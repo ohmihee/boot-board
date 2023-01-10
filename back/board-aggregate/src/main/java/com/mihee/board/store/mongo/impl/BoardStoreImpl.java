@@ -5,6 +5,7 @@ import com.mihee.board.store.mongo.BoardStore;
 import com.mihee.board.store.mongo.repository.BoardRepository;
 import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -17,27 +18,36 @@ public class BoardStoreImpl implements BoardStore {
 
     private final BoardRepository boardRepository;
 
+    @Override
     public void create(Board board) {
         BoardDoc boardDoc = new BoardDoc(board);
         this.boardRepository.save(boardDoc);
     }
 
+    @Override
     public Board findById(String id) {
         Optional<BoardDoc> boardDoc = this.boardRepository.findById(id);
         return boardDoc.map(BoardDoc::toDomain).orElse(null);
     }
 
+    @Override
     public void modify(Board board) {
         BoardDoc boardDoc = new BoardDoc(board);
         this.boardRepository.save(boardDoc);
     }
 
+    @Override
     public Boolean isExist (String id) {
         return this.boardRepository.findById(id).isPresent();
     }
 
+    @Override
     public List<Board> findAll () {
         return BoardDoc.toDomains(this.boardRepository.findAll());
     }
 
+    @Override
+    public void deleteBoardById (String id) {
+        this.boardRepository.deleteById(id);
+    }
 }

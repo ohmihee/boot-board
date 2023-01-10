@@ -13,4 +13,6 @@ public interface BoardStore {
 
     Boolean isExist(String id);
     List<Board> findAll ();
+
+    void deleteBoardById (String id);
 }

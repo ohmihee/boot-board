@@ -3,6 +3,7 @@ package com.mihee.board.store.mongo.repository.doc;
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Board;
 import com.mihee.board.domain.vo.BoardContent;
+import com.mihee.board.domain.vo.OpenStatus;
 import lombok.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.CreatedDate;
@@ -23,9 +24,9 @@ public class BoardDoc extends BaseEntity {
 
     private String category;
     private String title;
-    private List<BoardContent> contents;
+    private String contents;
     private String writer;
-    private String user;
+    private OpenStatus openStatus;
 
     // 자바 데이터를 데이터베이스로
     public BoardDoc(Board board) {
