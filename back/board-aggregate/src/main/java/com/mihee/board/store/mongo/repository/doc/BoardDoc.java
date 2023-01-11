@@ -21,10 +21,10 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDoc extends BaseEntity {
-
+//    private List<BoardContent> test;
     private String category;
     private String title;
-    private String contents;
+    private List<BoardContent> contents;
     private String writer;
     private OpenStatus openStatus;
 

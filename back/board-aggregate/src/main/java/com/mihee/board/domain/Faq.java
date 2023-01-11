@@ -19,18 +19,18 @@ public class Faq extends BaseEntity{
     private String writer;
 
     public void modifyValues(Faq faq) {
-        Map<String, String> valueList = EntityUtil.MapFromObj(faq);
-        for(Map.Entry<String, String> entry: valueList.entrySet()) {
+        Map<String, Object> valueList = EntityUtil.MapFromObj(faq);
+        for(Map.Entry<String, Object> entry: valueList.entrySet()) {
             if (entry.getValue() != null) {
                 switch (entry.getKey()) {
                     case "title":
-                        this.title = entry.getValue();
+                        this.title = entry.getValue().toString();
                         break;
                     case "question":
-                        this.question = entry.getValue();
+                        this.question = entry.getValue().toString();
                         break;
                     case "answer":
-                        this.answer = entry.getValue();
+                        this.answer = entry.getValue().toString();
                         break;
                 }
             }

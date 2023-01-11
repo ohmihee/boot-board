@@ -1,43 +1,40 @@
 package com.mihee.board;
 
-import com.mihee.board.domain.Board;
-import com.mihee.board.impl.BoardServiceImpl;
+import com.mihee.board.domain.Faq;
+import com.mihee.board.domain.Notice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/board/notice")
 @RequiredArgsConstructor
-public class BoardController {
-    private final BoardService boardService;
-
-    @PostMapping
-    public void createBoard(@RequestBody Board board) {
+public class NoticeController {
+    private final NoticeService boardService;
+    public void createBoard(@RequestBody Notice board) {
 
         //System.out.println(board.getClass());
         this.boardService.createBoard(board);
     }
 
     @PostMapping("/edit")
-    public void updateBoard(@RequestBody Board board) {
+    public void updateBoard(@RequestBody Notice board) {
         this.boardService.update(board);
     }
 
     @GetMapping
-    public List<Board> findAllBoard() {
+    public List<Notice> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 
     @GetMapping("/{id}")
-    public Board findBoardById(@PathVariable String id) {
+    public Notice findBoardById(@PathVariable String id) {
         return this.boardService.getBoardById(id);
     }
-    
+
     @DeleteMapping("/{id}")
     public void removeBoardById(@PathVariable String id) {
         this.boardService.removeBoardById(id);
     }
-
 }
