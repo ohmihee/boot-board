@@ -3,11 +3,19 @@ package com.mihee.board.store.mongo.repository.doc;
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Notice;
 import com.mihee.board.domain.vo.OpenStatus;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Document("Notice")
+@Getter
+@Setter
+@NoArgsConstructor
 public class NoticeDoc extends BaseEntity {
     private String title;
     private String contents;

@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.lang.reflect.Method;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@Document("Faq")
 public class FaqDoc extends BaseEntity {
     private String title;
     private String question;

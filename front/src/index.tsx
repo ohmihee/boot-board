@@ -5,14 +5,18 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { GlobalStyles } from '@mui/material';
 import { styles } from './styles/GlobalStyles';
+import { QueryClientProvider } from 'react-query';
+import { queryClient } from './api';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <GlobalStyles styles={styles}/>
-    <App />
+    <QueryClientProvider client={queryClient}>
+      <GlobalStyles styles={styles}/>
+      <App />
+    </QueryClientProvider>
   </React.StrictMode>
 );
 

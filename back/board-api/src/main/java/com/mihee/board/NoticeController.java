@@ -12,6 +12,8 @@ import java.util.List;
 @RequiredArgsConstructor
 public class NoticeController {
     private final NoticeService boardService;
+
+    @PostMapping
     public void createBoard(@RequestBody Notice board) {
 
         //System.out.println(board.getClass());

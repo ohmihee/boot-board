@@ -3,11 +3,21 @@ package com.mihee.board.store.mongo.repository.doc;
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Qna;
 import com.mihee.board.domain.vo.OpenStatus;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Document("Qna")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class QnaDoc extends BaseEntity {
     private String question;
     private String questioner;
