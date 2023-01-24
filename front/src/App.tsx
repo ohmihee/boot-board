@@ -2,13 +2,12 @@ import React, {useEffect, useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Home from './components/pages/Home';
-import { getCommonBoard } from './api';
+import { findCommonBoardAll, removeCommonBoardById } from './api';
 
 function App() {
 
   const test = async() => {
-    const result = await getCommonBoard(null);
-    console.log(result,"result====")
+    removeCommonBoardById("63be76733da10973f48aa8e3");
   }
 
   useEffect(()=>{
@@ -18,7 +17,6 @@ function App() {
     
     <div className="App">
       <Home/>
-      test
     </div>
   );
 }

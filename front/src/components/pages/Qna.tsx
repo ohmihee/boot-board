@@ -6,6 +6,7 @@ interface IQnaProps {
 const Qna: React.FunctionComponent<IQnaProps> = (props) => {
   return (
     <>
+    qna
     </>
   );
 };

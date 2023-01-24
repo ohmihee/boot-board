@@ -12,13 +12,5 @@ export const styles = {
     },
     li : {
         listStyle: 'none'
-    },
-    '.header': {
-        width: '100vw',
-        height: '10vh',
-        backgroundColor:'yellow',
-        marginTop: '5vh'
     }
-
-
 }

@@ -1,7 +1,16 @@
-import { getApi, postApi } from './api';
+import { deleteApi, getApi, postApi } from './api';
 
-export const getCommonBoard = (params: string | null ) =>
-    getApi("board", params);
+export const findCommonBoardAll = () =>
+    getApi("board");
 
-export const postCommonBoard = (data: any) =>
-    postApi("board", null);
+export const createCommonBoard = (data: any) =>
+    postApi("board", data);
+
+export const findCommonBoardById = (id: string) => 
+    getApi(`board/${id}`,);
+
+export const editCommoonBoardById = (data: any) =>
+    postApi("board/edit", data);
+
+export const removeCommonBoardById = (id: string) => 
+    deleteApi(`board/${id}`)

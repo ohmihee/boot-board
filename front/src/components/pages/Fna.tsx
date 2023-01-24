@@ -6,6 +6,7 @@ interface IFnaProps {
 const Fna: React.FunctionComponent<IFnaProps> = (props) => {
   return (
     <>
+    fna
     </>
   );
 };

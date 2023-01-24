@@ -1,14 +1,18 @@
-import * as React from 'react';
-import Header from '../common/Header';
+import { Container, Grid } from "@mui/material";
+import * as React from "react";
+import Header from "../common/Header";
+import Public from "./Public";
 
-interface IHomeProps {
-}
+interface IHomeProps {}
 
 const Home: React.FunctionComponent<IHomeProps> = (props) => {
   return (
-    <>
-    <Header/>test
-    </>
+    <Container>
+      <Header />
+      <Grid container sx={{ mt: "15px" }}>
+        <Public />
+      </Grid>
+    </Container>
   );
 };
 
