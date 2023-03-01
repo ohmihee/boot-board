@@ -14,20 +14,20 @@ import java.util.List;
 public class FaqStoreImpl implements FaqStore {
     private final FaqRepository faqRepository;
     @Override
-    public void create(Faq faq) {
-        FaqDoc faqDoc = new FaqDoc(faq);
-        this.faqRepository.save(faqDoc);
+    public String create(FaqDoc faqDoc) {
+        Faq faq = new Faq(faqDoc);
+        return this.faqRepository.save(faq).getId();
     }
 
     @Override
     public Faq findById(String id) {
-        return this.faqRepository.findById(id).get().toDomain();
+        return this.faqRepository.findById(id).get();
     }
 
     @Override
-    public void modify(Faq faq) {
-        FaqDoc faqDoc = new FaqDoc(faq);
-        this.faqRepository.save(faqDoc);
+    public String modify(Faq faq) {
+        //FaqDoc faqDoc = new Faq(faqDoc);
+        return this.faqRepository.save(faq).getId();
     }
 
     @Override
@@ -36,8 +36,8 @@ public class FaqStoreImpl implements FaqStore {
     }
 
     @Override
-    public List<Faq> findAll() {
-        return FaqDoc.toDomains(this.faqRepository.findAll());
+    public List<FaqDoc> findAll() {
+        return Faq.toDomains(this.faqRepository.findAll());
     }
 
     @Override

@@ -1,12 +1,16 @@
 package com.mihee.board.domain;
 
+import com.mihee.board.store.mongo.repository.doc.FaqDoc;
 import com.mihee.board.util.EntityUtil;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.beans.BeanUtils;
 
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -18,8 +22,22 @@ public class Faq extends BaseEntity{
     private String answer;
     private String writer;
 
-    public void modifyValues(Faq faq) {
-        Map<String, Object> valueList = EntityUtil.MapFromObj(faq);
+    public Faq (FaqDoc faqDoc) {
+        BeanUtils.copyProperties(faqDoc, this);
+    }
+
+    public FaqDoc toDomain () {
+        FaqDoc faqDoc = new FaqDoc();
+        BeanUtils.copyProperties(this, faqDoc);
+        return faqDoc;
+    }
+
+    public static List<FaqDoc> toDomains(List<Faq> faqs) {
+        return faqs.stream().map(Faq::toDomain).collect(Collectors.toList());
+    }
+
+    public void modifyValues(FaqDoc faqDoc) {
+        Map<String, Object> valueList = EntityUtil.MapFromObj(faqDoc);
         for(Map.Entry<String, Object> entry: valueList.entrySet()) {
             if (entry.getValue() != null) {
                 switch (entry.getKey()) {

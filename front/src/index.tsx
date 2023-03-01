@@ -1,22 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import { GlobalStyles } from '@mui/material';
-import { styles } from './styles/GlobalStyles';
-import { QueryClientProvider } from 'react-query';
-import { queryClient } from './api';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
+
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <GlobalStyles styles={styles}/>
-      <App />
-    </QueryClientProvider>
+    <App />
   </React.StrictMode>
 );
 

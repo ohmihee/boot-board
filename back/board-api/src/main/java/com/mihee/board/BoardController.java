@@ -1,7 +1,7 @@
 package com.mihee.board;
 
 import com.mihee.board.domain.Board;
-import com.mihee.board.impl.BoardServiceImpl;
+import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,20 +13,18 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    @PostMapping
-    public void createBoard(@RequestBody Board board) {
-
-        //System.out.println(board.getClass());
-        this.boardService.createBoard(board);
+    @PostMapping("")
+    public String createBoard(@RequestBody BoardDoc boardDoc) {
+        return this.boardService.createBoard(boardDoc);
     }
 
     @PostMapping("/edit")
-    public void updateBoard(@RequestBody Board board) {
-        this.boardService.update(board);
+    public void updateBoard(@RequestBody BoardDoc boardDoc) {
+        this.boardService.update(boardDoc);
     }
 
     @GetMapping
-    public List<Board> findAllBoard() {
+    public List<BoardDoc> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 

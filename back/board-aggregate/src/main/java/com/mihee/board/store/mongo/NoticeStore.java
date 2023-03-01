@@ -1,14 +1,15 @@
 package com.mihee.board.store.mongo;
 
 import com.mihee.board.domain.Notice;
+import com.mihee.board.store.mongo.repository.doc.NoticeDoc;
 
 import java.util.List;
 
 public interface NoticeStore {
-    void create (Notice notice);
+    String create (NoticeDoc notice);
     Notice findById (String id);
-    void modify (Notice notice);
+    String modify (NoticeDoc notice);
     Boolean isExist (String id);
-    List<Notice> findAll ();
+    List<NoticeDoc> findAll ();
     void deleteBoardById(String id);
 }

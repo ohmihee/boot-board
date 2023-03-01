@@ -28,18 +28,18 @@ public class BoardDoc extends BaseEntity {
     private String writer;
     private OpenStatus openStatus;
 
-    // 자바 데이터를 데이터베이스로
-    public BoardDoc(Board board) {
-        BeanUtils.copyProperties(board, this);
-    }
-    // 데이터베이스를 자바 객체로
+// 자바 데이터를 데이터베이스로
+//    public BoardDoc(BoardDoc boardDoc) {
+//        BeanUtils.copyProperties(boardDoc, this);
+//    }
+// 데이터베이스를 자바 객체로
     public Board toDomain() {
         Board board = new Board();
         BeanUtils.copyProperties(this, board);
         return board;
     }
-
-    public static List<Board> toDomains(List<BoardDoc> boards) {
-        return boards.stream().map(BoardDoc:: toDomain).collect(Collectors.toList());
-    }
+//
+//    public static List<Board> toDomains(List<BoardDoc> boards) {
+//        return boards.stream().map(BoardDoc:: toDomain).collect(Collectors.toList());
+//    }
 }

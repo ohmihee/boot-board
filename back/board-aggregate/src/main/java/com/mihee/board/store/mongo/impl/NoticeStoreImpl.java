@@ -15,20 +15,20 @@ public class NoticeStoreImpl implements NoticeStore {
 
     private final NoticeRepository noticeRepository;
     @Override
-    public void create(Notice notice) {
-        NoticeDoc noticeDoc = new NoticeDoc(notice);
-        this.noticeRepository.save(noticeDoc);
+    public String create(NoticeDoc noticeDoc) {
+        Notice notice = new Notice(noticeDoc);
+        return this.noticeRepository.save(notice).getId();
     }
 
     @Override
     public Notice findById(String id) {
-        return this.noticeRepository.findById(id).get().toDomain();
+        return this.noticeRepository.findById(id).get();
     }
 
     @Override
-    public void modify(Notice notice) {
-        NoticeDoc noticeDoc = new NoticeDoc(notice);
-        this.noticeRepository.save(noticeDoc);
+    public String modify(NoticeDoc noticeDoc) {
+        Notice notice = new Notice(noticeDoc);
+        return this.noticeRepository.save(notice).getId();
     }
 
     @Override
@@ -37,8 +37,8 @@ public class NoticeStoreImpl implements NoticeStore {
     }
 
     @Override
-    public List<Notice> findAll() {
-        return NoticeDoc.toDomains(this.noticeRepository.findAll());
+    public List<NoticeDoc> findAll() {
+        return Notice.toDomains(this.noticeRepository.findAll());
     }
 
     @Override

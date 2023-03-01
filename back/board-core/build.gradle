@@ -1,11 +1,24 @@
 plugins {
-    id 'org.springframework.boot' version "${springBootVersion}"
+    id 'org.springframework.boot' version "2.6.2"
+    id 'groovy'
 }
 
 dependencies {
     api project(':board-api')
-    implementation ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:${springBootVersion}")
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation ("org.springframework.boot:spring-boot-starter-web:2.6.2")
+    implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2")
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
+    testImplementation('org.spockframework:spock-core:2.3-groovy-3.0')
+    testImplementation('org.spockframework:spock-spring:2.3-groovy-3.0')
+    testImplementation('org.codehaus.groovy:groovy-all:3.0.0')
+    //testImplementation('org.junit.jupiter:junit-jupiter-api')
+    //testImplementation('org.junit.jupiter:junit-jupiter-engine:')
+    testImplementation('org.junit.jupiter:junit-jupiter')
+    //testImplementation 'org.junit.platform:junit-platform-launcher'
+    //testImplementation 'org.junit.vintage:junit-vintage-engine'
+
+}
+
+test{
+    useJUnitPlatform()
 }

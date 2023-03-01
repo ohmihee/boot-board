@@ -1,25 +1,34 @@
-import { Box, Grid, Link, Toolbar, Typography } from "@mui/material";
+import { Box, Grid, Toolbar, Typography } from "@mui/material";
+import { useAtom } from "jotai";
 import * as React from "react";
+import { boardTypeAtom } from "../../state/boardType";
+import { BoardType } from "../../state/type/boardType";
+import { Link } from "react-router-dom";
 
 interface IHeaderProps {}
 
 const Header: React.FunctionComponent<IHeaderProps> = (props) => {
+  const [boardType, setBoardType] = useAtom(boardTypeAtom);
   const sections = [
     {
-      url: "",
-      title: "public",
+      url: "/",
+      title: "Public",
+      type: BoardType.Public,
     },
     {
-      uri: "",
-      title: "notify",
+      url: "/notice",
+      title: "Notice",
+      type: BoardType.Notice,
     },
     {
-      uri: "",
-      title: "faq",
+      url: "/faq",
+      title: "Faq",
+      type: BoardType.Faq,
     },
     {
-      uri: "",
-      title: "qna",
+      url: "/qna",
+      title: "Qna",
+      type: BoardType.Qna,
     },
   ];
 
@@ -57,11 +66,12 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
         {sections.map((section) => (
           <Link
             color="inherit"
-            noWrap
+            className="header-style"
+            //noWrap
             key={section.title}
-            variant="body2"
-            href={section.url}
-            sx={{ p: 1, flexShrink: 0 }}
+            //variant="body2"
+            to={section.url}
+            //sx={{ p: 1, flexShrink: 0 }}
           >
             {section.title}
           </Link>

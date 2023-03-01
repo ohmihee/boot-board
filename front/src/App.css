@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.header-style {
+  color: black;
+  list-style: none;
+  border-bottom: none;
+  text-decoration: none;
+}
+
+.table-num {
+  width: 30px;
+  color: blue;
+  padding-right: 20vw;
+}

@@ -2,6 +2,7 @@ package com.mihee.board.store.mongo.repository.doc;
 
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Notice;
+import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class NoticeDoc extends BaseEntity {
     private String title;
-    private String contents;
+    private List<BoardContent> contents;
     private String writer;
     private OpenStatus openStatus;
 

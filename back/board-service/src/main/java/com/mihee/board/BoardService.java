@@ -1,15 +1,16 @@
 package com.mihee.board;
 
 import com.mihee.board.domain.Board;
+import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 public interface BoardService {
-    void createBoard(Board board);
+    String createBoard(BoardDoc board);
     Board getBoardById(String id);
-    void update(Board board);
-    List<Board> getAllBoard();
+    void update(BoardDoc boardDoc);
+    List<BoardDoc> getAllBoard();
 
     void removeBoardById(String id);
 }

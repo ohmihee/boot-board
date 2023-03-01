@@ -9,7 +9,7 @@ ext {
 }
 
 allprojects {
-    group 'com.mihee.board'
+    //group 'com.mihee.board'
     configurations {
         all {
             resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
@@ -17,9 +17,14 @@ allprojects {
     }
 }
 
+repositories {
+    mavenCentral()
+}
+
 subprojects {
     apply plugin: 'java-library'
     apply plugin: 'io.spring.dependency-management'
+    //apply plugin: 'groovy'
     repositories {
         mavenLocal()
         mavenCentral()
@@ -34,6 +39,9 @@ subprojects {
         annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
         testImplementation("org.projectlombok:lombok:${lombokVersion}")
         testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
-        //
+    }
+
+    test{
+        useJUnitPlatform()
     }
 }

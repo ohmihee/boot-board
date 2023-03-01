@@ -2,6 +2,7 @@ package com.mihee.board;
 
 import com.mihee.board.domain.Board;
 import com.mihee.board.domain.Faq;
+import com.mihee.board.store.mongo.repository.doc.FaqDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +15,20 @@ public class FaqController {
     private final FaqService boardService;
 
     @PostMapping
-    public void createBoard(@RequestBody Faq board) {
+    public String createBoard(@RequestBody FaqDoc faqDoc) {
 
         //System.out.println(board.getClass());
-        this.boardService.createBoard(board);
+        return this.boardService.createBoard(faqDoc);
     }
 
     @PostMapping("/edit")
-    public void updateBoard(@RequestBody Faq board) {
-        this.boardService.update(board);
+    public String updateBoard(@RequestBody FaqDoc faqDoc) {
+
+        return this.boardService.update(faqDoc);
     }
 
     @GetMapping
-    public List<Faq> findAllBoard() {
+    public List<FaqDoc> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 

@@ -6,7 +6,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import com.mihee.board.domain.Board;
 import com.mihee.board.util.EntityUtil;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -15,10 +17,14 @@ import java.util.Map;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class BoardContent {
-    private int order;
+    private Integer order;
     private String contentType;
     private String content;
+
+
 
 //    public static void modifyValues(Object obj, Board board) {
 //        ObjectMapper objectMapper = new ObjectMapper();

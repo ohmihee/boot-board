@@ -3,6 +3,7 @@ package com.mihee.board.impl;
 import com.mihee.board.FaqService;
 import com.mihee.board.domain.Faq;
 import com.mihee.board.store.mongo.FaqStore;
+import com.mihee.board.store.mongo.repository.doc.FaqDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +14,8 @@ import java.util.List;
 public class FaqServiceImpl implements FaqService {
     private final FaqStore faqStore;
     @Override
-    public void createBoard(Faq faq) {
-        this.faqStore.create(faq);
+    public String createBoard(FaqDoc faqDoc) {
+        return this.faqStore.create(faqDoc);
     }
 
     @Override
@@ -23,14 +24,14 @@ public class FaqServiceImpl implements FaqService {
     }
 
     @Override
-    public void update(Faq faq) {
-        Faq newFaq = this.faqStore.findById(faq.getId());
-        newFaq.modifyValues(faq);
-        this.faqStore.modify(newFaq);
+    public String update(FaqDoc faqDoc) {
+        Faq newFaq = this.faqStore.findById(faqDoc.getId());
+        newFaq.modifyValues(faqDoc);
+        return this.faqStore.modify(newFaq);
     }
 
     @Override
-    public List<Faq> getAllBoard() {
+    public List<FaqDoc> getAllBoard() {
         return this.faqStore.findAll();
     }
 

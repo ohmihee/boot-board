@@ -1,17 +1,22 @@
-import { ICreateBoard } from '../types/type';
-import { deleteApi, getApi, postApi } from './api';
+import { ICreateBoard } from "../types/type";
+import { deleteApi, getApi, postApi } from "./api";
 
-export const findCommonBoardAll = () =>
-    getApi("board/qna");
+export const findQnaBoardAll = () => getApi("board/qna").then();
 
-export const createCommonBoard = (data: ICreateBoard) =>
-    postApi("board/qna", data);
+export const createQnaBoard = (data: ICreateBoard) =>
+  postApi("board/qna", data);
 
-export const findCommonBoardById = (id: string) => 
-    getApi(`board/qna/${id}`,);
+export const findQnaBoardById = (id: string) => getApi(`board/qna/${id}`);
 
-export const editCommoonBoardById = (data: any) =>
-    postApi("board/qna/edit", data);
+export const editQnaBoardById = (data: any) => postApi("board/qna/edit", data);
 
-export const removeCommonBoardById = (id: string) => 
-    deleteApi(`board/qna/${id}`)
+export const removeQnaBoardById = (id: string) => deleteApi(`board/qna/${id}`);
+
+export default {
+  query: {
+    findQnaBoardAll: () => ({
+      queryKey: "board-qna",
+      queryFn: async () => await findQnaBoardAll(),
+    }),
+  },
+};

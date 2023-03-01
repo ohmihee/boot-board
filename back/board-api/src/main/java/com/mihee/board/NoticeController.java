@@ -2,6 +2,7 @@ package com.mihee.board;
 
 import com.mihee.board.domain.Faq;
 import com.mihee.board.domain.Notice;
+import com.mihee.board.store.mongo.repository.doc.NoticeDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,19 +15,19 @@ public class NoticeController {
     private final NoticeService boardService;
 
     @PostMapping
-    public void createBoard(@RequestBody Notice board) {
+    public String createBoard(@RequestBody NoticeDoc board) {
 
         //System.out.println(board.getClass());
-        this.boardService.createBoard(board);
+        return this.boardService.createBoard(board);
     }
 
     @PostMapping("/edit")
-    public void updateBoard(@RequestBody Notice board) {
-        this.boardService.update(board);
+    public String updateBoard(@RequestBody NoticeDoc board) {
+        return this.boardService.update(board);
     }
 
     @GetMapping
-    public List<Notice> findAllBoard() {
+    public List<NoticeDoc> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 

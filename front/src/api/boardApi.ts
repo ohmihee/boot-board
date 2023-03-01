@@ -1,16 +1,40 @@
-import { deleteApi, getApi, postApi } from './api';
+import { deleteApi, getApi, postApi } from "./api";
 
-export const findCommonBoardAll = () =>
-    getApi("board");
+const findCommonBoardAll = () => getApi("board").then();
 
-export const createCommonBoard = (data: any) =>
-    postApi("board", data);
+const createCommonBoard = (data: any) => postApi("board", data).then();
 
-export const findCommonBoardById = (id: string) => 
-    getApi(`board/${id}`,);
+const findCommonBoardById = (id: string) => getApi(`board/${id}`);
 
-export const editCommoonBoardById = (data: any) =>
-    postApi("board/edit", data);
+const editCommoonBoardById = (data: any) => postApi("board/edit", data);
 
-export const removeCommonBoardById = (id: string) => 
-    deleteApi(`board/${id}`)
+const removeCommonBoardById = (id: string) => deleteApi(`board/${id}`);
+
+interface IPublic {
+  category?: string;
+  contents: [
+    {
+      order?: number;
+      contentType?: string;
+      content: string;
+    }
+  ];
+  title: string;
+  writer?: string;
+  openStatus: string;
+}
+
+export default {
+  findCommonBoardAll,
+  query: {
+    findCommonBoardAll: () => ({
+      queryKey: "board-public",
+      queryFn: async () => await findCommonBoardAll(),
+    }),
+  },
+  mutation: {
+    createCommonBoard: {
+      mutationFn: async (data: IPublic) => await createCommonBoard(data),
+    },
+  },
+};
