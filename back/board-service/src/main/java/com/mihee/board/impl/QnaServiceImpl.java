@@ -3,6 +3,7 @@ package com.mihee.board.impl;
 import com.mihee.board.QnaService;
 import com.mihee.board.domain.Qna;
 import com.mihee.board.store.mongo.QnaStore;
+import com.mihee.board.store.mongo.repository.doc.QnaDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,8 +15,8 @@ public class QnaServiceImpl implements QnaService {
 
     private final QnaStore qnaStore;
     @Override
-    public void createBoard(Qna qna) {
-        this.qnaStore.create(qna);
+    public void createBoard(QnaDoc qnaDoc) {
+        this.qnaStore.create(qnaDoc);
     }
 
     @Override
@@ -31,7 +32,7 @@ public class QnaServiceImpl implements QnaService {
     }
 
     @Override
-    public List<Qna> getAllBoard() {
+    public List<QnaDoc> getAllBoard() {
         return this.qnaStore.findAll();
     }
 

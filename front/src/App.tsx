@@ -6,13 +6,17 @@ import { queryClient } from "./api";
 import { QueryClientProvider } from "react-query";
 import { GlobalStyles } from "@mui/styled-engine";
 import { styles } from "./styles/GlobalStyles";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
 import Public from "./pages/Public";
 import Notice from "./pages/Notice";
 import Faq from "./pages/Faq";
 import Qna from "./pages/Qna";
 import { Provider } from "jotai";
 import PublicForm from "./pages/PublicForm";
+import { Container, Grid } from "@mui/material";
+import Header from "./components/common/Header";
+import CreateNotice from "./pages/CreateNotice";
+import CreateFaq from "./pages/CreateFaq";
 
 function App() {
   // const test = async () => {
@@ -31,8 +35,14 @@ function App() {
           path: "/faq",
           element: <Faq />,
         },
+        {
+          path: "/faq/form",
+          element: <CreateFaq />,
+        },
         { path: "/qna", element: <Qna /> },
-        { path: "/form", element: <PublicForm /> },
+        { path: "/public/form/:id", element: <PublicForm /> },
+        { path: "/public/form", element: <PublicForm /> },
+        { path: "/notice/form", element: <CreateNotice /> },
       ],
     },
   ]);
@@ -42,7 +52,6 @@ function App() {
       <Provider>
         <QueryClientProvider client={queryClient}>
           <GlobalStyles styles={styles} />
-          {/* <Home /> */}
           <RouterProvider router={router} />
         </QueryClientProvider>
       </Provider>

@@ -1,4 +1,5 @@
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -9,6 +10,7 @@ import {
 } from "@mui/material";
 import { useAtom } from "jotai";
 import * as React from "react";
+import { Link } from 'react-router-dom';
 import QnaRow from "../components/QnaRow";
 import { boardTypeAtom } from "../state/boardType";
 import common from "../state/common";
@@ -51,6 +53,14 @@ const Qna: React.FunctionComponent<IQnaProps> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Link to="/faq/form">
+        <Button
+          sx={{ marginTop: 2, marginLeft: "74vw", backgroundColor: "#1982b3" }}
+          variant="contained"
+        >
+          등록
+        </Button>
+      </Link>
     </>
   );
 };

@@ -9,7 +9,11 @@ import {
   TableHead,
 } from "@mui/material";
 import React from "react";
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
+import {
+  CheckBox,
+  KeyboardArrowDown,
+  KeyboardArrowUp,
+} from "@mui/icons-material";
 import { Box } from "@mui/system";
 
 interface IFaq {
@@ -26,6 +30,20 @@ const FaqRow = ({ row }: { row: IFaq }) => {
   return (
     <>
       <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+        {/* 관리자인 경우
+      <TableCell>
+          <CheckBox />
+        </TableCell>
+        <TableCell component="th" scope="row">
+          <IconButton
+            aria-label="expand-row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUp /> : <KeyboardArrowDown />}
+          </IconButton>
+          Q: {row.question}
+        </TableCell> */}
         <TableCell>
           <IconButton
             aria-label="expand-row"
@@ -36,14 +54,14 @@ const FaqRow = ({ row }: { row: IFaq }) => {
           </IconButton>
         </TableCell>
         <TableCell component="th" scope="row">
-          {row.title}
+          Q: {row.question}
         </TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} />
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box>
+            {/* <Box>
               <Typography variant="h6" gutterBottom component="div">
                 요청질문
               </Typography>
@@ -54,10 +72,11 @@ const FaqRow = ({ row }: { row: IFaq }) => {
                   </TableRow>
                 </TableBody>
               </Table>
-            </Box>
+            </Box> */}
+
             <Box>
               <Typography variant="h6" gutterBottom component="div">
-                답변
+                A:
               </Typography>
               <Table>
                 <TableBody>

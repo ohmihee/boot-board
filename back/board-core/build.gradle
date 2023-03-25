@@ -7,7 +7,9 @@ dependencies {
     api project(':board-api')
     implementation ("org.springframework.boot:spring-boot-starter-web:2.6.2")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2")
-    testImplementation("org.springframework.boot:spring-boot-starter-test:2.6.2")
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    //implementation 'org.springframework.boot:spring-boot-starter-security'
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation('org.spockframework:spock-core:2.3-groovy-3.0')
     testImplementation('org.spockframework:spock-spring:2.3-groovy-3.0')
     testImplementation('org.codehaus.groovy:groovy-all:3.0.0')

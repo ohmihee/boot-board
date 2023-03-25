@@ -19,17 +19,25 @@ interface IPublic {
       content: string;
     }
   ];
-  title: string;
+  title: string | undefined;
   writer?: string;
   openStatus: string;
 }
 
 export default {
   findCommonBoardAll,
+  createCommonBoard,
+  findCommonBoardById,
   query: {
     findCommonBoardAll: () => ({
-      queryKey: "board-public",
-      queryFn: async () => await findCommonBoardAll(),
+      queryKeyAll: "board-public",
+      queryFnAll: async () => await findCommonBoardAll(),
+      // queryFnAll: async () =>
+      //   await fetch("http://localhost:8080/board").then((res) => res.json()),
+    }),
+    findCommonBoardById: (id: string) => ({
+      queryKeyById: "board-read-id",
+      queryFnById: async () => await findCommonBoardById(id).then(),
     }),
   },
   mutation: {

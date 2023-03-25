@@ -3,6 +3,7 @@ package com.mihee.board.domain;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
+import com.mihee.board.domain.dto.WriterCdo;
 import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
 import com.mihee.board.store.mongo.repository.doc.BoardDoc;
@@ -27,13 +28,8 @@ public class Board extends BaseEntity {
     private String category;
     private String title;
     private List<BoardContent> contents;
-    private String writer;
+    private WriterCdo writer;
     private OpenStatus openStatus;
-
-//    public VideoContent(VideoContentCdo videoContentCdo) {
-//        super(videoContentCdo.genId(), videoContentCdo.getRequesterKey());
-//        BeanUtils.copyProperties(videoContentCdo, this);
-//    }
 
     public Board(BoardDoc boardDoc) {
         BeanUtils.copyProperties(boardDoc, this);

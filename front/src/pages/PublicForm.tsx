@@ -1,12 +1,19 @@
 import { Box, Button, Grid, TextField } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import common from "../state/common";
 
 interface IPublicForm {}
 
 const PublicForm: React.FunctionComponent<IPublicForm> = () => {
-  const { createCommonBoard, setCommonBoardTitle, setCommonBoardContent } =
-    common();
+  const location = useLocation();
+  const path = location.pathname.split("form/");
+  const {
+    createCommonBoard,
+    setCommonBoardTitle,
+    setCommonBoardContent,
+    commonBoard,
+  } = common(path[1]);
+
   const navigate = useNavigate();
 
   const route = () => {
@@ -28,7 +35,7 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
             setCommonBoardTitle("title", e.target.value);
           }}
           fullWidth
-          label="제목을 입력하세요"
+          label={commonBoard?.title ?? "제목을 입력하세요"}
           id="fullWidth"
         />
         <TextField
@@ -49,8 +56,16 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
           variant="contained"
           onClick={() => createCommonBoard(route)}
         >
-          등록
+          완료
         </Button>
+        <Link to="/">
+          <Button
+            sx={{ marginTop: 2, backgroundColor: "#1982b3", marginLeft: 2 }}
+            variant="contained"
+          >
+            목록
+          </Button>
+        </Link>
       </Box>
     </>
   );

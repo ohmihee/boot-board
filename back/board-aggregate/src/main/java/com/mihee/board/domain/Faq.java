@@ -1,5 +1,6 @@
 package com.mihee.board.domain;
 
+import com.mihee.board.domain.dto.WriterCdo;
 import com.mihee.board.store.mongo.repository.doc.FaqDoc;
 import com.mihee.board.util.EntityUtil;
 import lombok.AllArgsConstructor;
@@ -19,8 +20,8 @@ import java.util.stream.Collectors;
 public class Faq extends BaseEntity{
     private String title;
     private String question;
-    private String answer;
-    private String writer;
+    private WriterCdo answer;
+    private WriterCdo writer;
 
     public Faq (FaqDoc faqDoc) {
         BeanUtils.copyProperties(faqDoc, this);
@@ -48,7 +49,7 @@ public class Faq extends BaseEntity{
                         this.question = entry.getValue().toString();
                         break;
                     case "answer":
-                        this.answer = entry.getValue().toString();
+                        this.answer = (WriterCdo) entry.getValue();
                         break;
                 }
             }

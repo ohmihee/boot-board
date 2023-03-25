@@ -1,3 +1,4 @@
+import { IFaq } from "../state/type/IFaq";
 import { deleteApi, getApi, postApi } from "./api";
 
 const findFaqBoardAll = () => getApi("board/faq").then();
@@ -12,10 +13,17 @@ const removeFaqBoardById = (id: string) => deleteApi(`board/fqa/${id}`);
 
 export default {
   findFaqBoardAll,
+  findFaqBoardById,
+  createFaqBoard,
   query: {
     findFaqBoardAll: () => ({
       queryKey: "board-faq",
       queryFn: async () => await findFaqBoardAll(),
     }),
+  },
+  mutation: {
+    createFaqBoard: {
+      mutationFn: async (data: IFaq) => await createFaqBoard(data),
+    },
   },
 };

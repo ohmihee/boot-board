@@ -38,6 +38,7 @@ public class Qna extends BaseEntity{
 
     public static List<QnaDoc> toDomains(List<Qna> qnas) {
         return qnas.stream().map(Qna::toDomain).collect(Collectors.toList());
+        //return boards.stream().map(Board::toDomain).collect(Collectors.toList());
     }
     public void modifyValues(Qna qna) {
         Map<String, Object> valueList = EntityUtil.MapFromObj(qna);

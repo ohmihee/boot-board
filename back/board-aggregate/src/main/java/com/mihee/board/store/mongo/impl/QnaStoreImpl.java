@@ -15,20 +15,21 @@ public class QnaStoreImpl implements QnaStore {
 
     private final QnaRepository qnaRepository;
     @Override
-    public void create(Qna qna) {
-        QnaDoc qnaDoc = new QnaDoc(qna);
-        this.qnaRepository.save(qnaDoc);
+    public void create(QnaDoc qnaDoc) {
+        Qna qna = new Qna(qnaDoc);
+        this.qnaRepository.save(qna);
     }
 
     @Override
     public Qna findById(String id) {
-        return this.qnaRepository.findById(id).get().toDomain();
+        return this.qnaRepository.findById(id).orElseGet(null);
     }
+    //return this.boardRepository.findById(id).orElseGet(null);
 
     @Override
     public void modify(Qna qna) {
-        QnaDoc qnaDoc = new QnaDoc(qna);
-        this.qnaRepository.save(qnaDoc);
+        //QnaDoc qnaDoc = new QnaDoc(qna);
+        this.qnaRepository.save(qna);
     }
 
     @Override
@@ -37,8 +38,8 @@ public class QnaStoreImpl implements QnaStore {
     }
 
     @Override
-    public List<Qna> findAll() {
-        return QnaDoc.toDomains(this.qnaRepository.findAll());
+    public List<QnaDoc> findAll() {
+        return Qna.toDomains(this.qnaRepository.findAll());
     }
 
     @Override

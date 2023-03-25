@@ -6,8 +6,10 @@ import {
   Paper,
   TableBody,
   TableRow,
+  Button,
 } from "@mui/material";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import FaqRow from "../components/FaqRow";
 import faq from "../state/faq";
 
@@ -32,10 +34,9 @@ const Faq: React.FunctionComponent<IFnaProps> = (props) => {
         <Table aria-label="collapsible table">
           <TableHead>
             <TableRow>
-              <TableCell className="table-num" align="left">
-                번호
-              </TableCell>
+              <TableCell className="table-num" align="left"></TableCell>
               <TableCell align="center">제목</TableCell>
+              <TableCell align="center"></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -45,6 +46,14 @@ const Faq: React.FunctionComponent<IFnaProps> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Link to="/faq/form">
+        <Button
+          sx={{ marginTop: 2, marginLeft: "74vw", backgroundColor: "#1982b3" }}
+          variant="contained"
+        >
+          등록
+        </Button>
+      </Link>
     </>
   );
 };

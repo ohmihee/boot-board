@@ -1,6 +1,7 @@
 package com.mihee.board;
 
 import com.mihee.board.domain.Qna;
+import com.mihee.board.store.mongo.repository.doc.QnaDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +14,7 @@ public class QnaController {
     private final QnaService boardService;
 
     @PostMapping
-    public void createBoard(@RequestBody Qna board) {
+    public void createBoard(@RequestBody QnaDoc board) {
         //System.out.println(board.getClass());
         this.boardService.createBoard(board);
     }
@@ -24,7 +25,7 @@ public class QnaController {
     }
 
     @GetMapping
-    public List<Qna> findAllBoard() {
+    public List<QnaDoc> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 

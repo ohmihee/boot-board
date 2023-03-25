@@ -4,6 +4,7 @@ import boardApi from "../api/boardApi";
 import { BoardType } from "./type/boardType";
 
 interface IPublic {
+  id?: string;
   category?: string;
   contents: [
     {
@@ -12,12 +13,12 @@ interface IPublic {
       content: string;
     }
   ];
-  title: string;
+  title: string | undefined;
   writer?: string;
   openStatus: string;
 }
 
-export default () => {
+export default (id?: string) => {
   const [commonBoard, setCommonBoard] = useState<IPublic>({
     category: "",
     contents: [
@@ -25,14 +26,24 @@ export default () => {
         content: "",
       },
     ],
-    title: "",
+    title: undefined,
     writer: "",
     openStatus: "All",
   });
-  const { queryKey, queryFn } = boardApi.query.findCommonBoardAll();
+  const { queryKeyAll, queryFnAll } = boardApi.query.findCommonBoardAll();
 
-  const { data } = useQuery(queryKey, queryFn);
+  if (id) {
+    const { queryKeyById, queryFnById } =
+      boardApi.query.findCommonBoardById(id);
+    useQuery(queryKeyById, queryFnById, {
+      onSuccess: (result) => {
+        setCommonBoard(result);
+        console.log(result);
+      },
+    });
+  }
 
+  const { data } = useQuery(queryKeyAll, queryFnAll);
   const register = boardApi.mutation.createCommonBoard;
   const registerMutaion = useMutation(register.mutationFn);
 
@@ -69,8 +80,10 @@ export default () => {
   //     boardType,
   //     setBoardType,
   //   };
+
   return {
     data,
+    commonBoard,
     createCommonBoard,
     setCommonBoardTitle,
     setCommonBoardContent,

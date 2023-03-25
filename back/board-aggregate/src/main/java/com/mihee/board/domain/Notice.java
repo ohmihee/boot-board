@@ -1,5 +1,6 @@
 package com.mihee.board.domain;
 
+import com.mihee.board.domain.dto.WriterCdo;
 import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
 import com.mihee.board.store.mongo.repository.doc.NoticeDoc;
@@ -21,7 +22,7 @@ import java.util.stream.Collectors;
 public class Notice extends BaseEntity{
     private String title;
     private List<BoardContent> contents;
-    private String writer;
+    private WriterCdo writer;
     private OpenStatus openStatus;
 
     public Notice (NoticeDoc noticeDoc ) {

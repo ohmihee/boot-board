@@ -1,18 +1,16 @@
-import { KeyboardArrowDown, KeyboardArrowUp } from "@mui/icons-material";
 import {
-  IconButton,
   TableRow,
   TableCell,
-  Collapse,
-  Typography,
   Table,
   TableHead,
   TableBody,
   TableContainer,
   Paper,
+  Button,
 } from "@mui/material";
 import { Box } from "@mui/system";
 import * as React from "react";
+import { Link } from "react-router-dom";
 import CollapseRow from "../components/CollapseRow";
 import notice from "../state/notice";
 
@@ -56,6 +54,14 @@ const Notice: React.FunctionComponent<INoticeProps> = (props) => {
           </TableBody>
         </Table>
       </TableContainer>
+      <Link to="/notice/form">
+        <Button
+          sx={{ marginTop: 2, marginLeft: "74vw", backgroundColor: "#1982b3" }}
+          variant="contained"
+        >
+          등록
+        </Button>
+      </Link>
     </>
   );
 };
