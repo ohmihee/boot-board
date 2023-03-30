@@ -7,8 +7,15 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
 public class ExceptionManager {
-    @ExceptionHandler(RuntimeException.class)
-    public ResponseEntity<?> runTimeExceptionHandler(RuntimeException e) {
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
-    }
+
+@ExceptionHandler(AddException.class)
+public ResponseEntity<?> addExceptionHandler(AddException e) {
+    return ResponseEntity.status(e.getErrorCode().getHttpStatus())
+            .body(e.getErrorCode().name() + " " + e.getMessage());
+}
+
+@ExceptionHandler(RuntimeException.class)
+public ResponseEntity<?> runTimeExceptionHandler(RuntimeException e) {
+    return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
+}
 }
