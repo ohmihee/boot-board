@@ -39,9 +39,14 @@ subprojects {
         annotationProcessor("org.projectlombok:lombok:${lombokVersion}")
         testImplementation("org.projectlombok:lombok:${lombokVersion}")
         testAnnotationProcessor("org.projectlombok:lombok:${lombokVersion}")
+        implementation("org.springframework.boot:spring-boot-starter-security:${springBootVersion}")
+        implementation("org.springframework.security:spring-security-crypto:5.6.1")
+//        implementation('org.springframework.boot:spring-boot-starter-security')
+//        implementation('org.springframework.security:spring-security-crypto')
+
     }
 
-    test{
+    test {
         useJUnitPlatform()
     }
 }

@@ -5,10 +5,10 @@ plugins {
 
 dependencies {
     api project(':board-api')
-    implementation ("org.springframework.boot:spring-boot-starter-web:2.6.2")
+    implementation("org.springframework.boot:spring-boot-starter-web:2.6.2")
     implementation("org.springframework.boot:spring-boot-starter-data-mongodb:2.6.2")
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
-    //implementation 'org.springframework.boot:spring-boot-starter-security'
+//    implementation('org.springframework.boot:spring-boot-starter-security')
+//    implementation('org.springframework.security:spring-security-crypto:5.6.1')
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation('org.spockframework:spock-core:2.3-groovy-3.0')
     testImplementation('org.spockframework:spock-spring:2.3-groovy-3.0')
@@ -19,8 +19,9 @@ dependencies {
     //testImplementation 'org.junit.platform:junit-platform-launcher'
     //testImplementation 'org.junit.vintage:junit-vintage-engine'
 
+
 }
 
-test{
+test {
     useJUnitPlatform()
 }

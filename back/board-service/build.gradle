@@ -1,8 +1,9 @@
 dependencies {
     api project(':board-aggregate')
     api project(':board-exception')
-    implementation ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    //implementation 'org.springframework.boot:spring-boot-starter-data-jpa:2.6.2'
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+
 }
