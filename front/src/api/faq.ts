@@ -15,15 +15,27 @@ export default {
   findFaqBoardAll,
   findFaqBoardById,
   createFaqBoard,
+  editFaqBoardById,
+  removeFaqBoardById,
   query: {
     findFaqBoardAll: () => ({
       queryKey: "board-faq",
       queryFn: async () => await findFaqBoardAll(),
     }),
+    findFaqBoardById: () => ({
+      queryKey: "faq-read-id",
+      queryFn: async (id: string) => await findFaqBoardById(id)
+    })
   },
   mutation: {
     createFaqBoard: {
       mutationFn: async (data: IFaq) => await createFaqBoard(data),
     },
+    editFaqBoardById: {
+      mutationFn: async (data: IFaq) => await editFaqBoardById(data)
+    },
+    removeFaqBoardById: {
+      mutationFn: async (id: string) => await removeFaqBoardById(id)
+    }
   },
 };

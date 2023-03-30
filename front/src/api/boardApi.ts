@@ -6,11 +6,12 @@ const createCommonBoard = (data: any) => postApi("board", data).then();
 
 const findCommonBoardById = (id: string) => getApi(`board/${id}`);
 
-const editCommoonBoardById = (data: any) => postApi("board/edit", data);
+const editCommonBoardById = (data: any) => postApi("board/edit", data);
 
 const removeCommonBoardById = (id: string) => deleteApi(`board/${id}`);
 
 interface IPublic {
+  id?: string;
   category?: string;
   contents: [
     {
@@ -28,6 +29,8 @@ export default {
   findCommonBoardAll,
   createCommonBoard,
   findCommonBoardById,
+  editCommonBoardById,
+  removeCommonBoardById,
   query: {
     findCommonBoardAll: () => ({
       queryKeyAll: "board-public",
@@ -44,5 +47,11 @@ export default {
     createCommonBoard: {
       mutationFn: async (data: IPublic) => await createCommonBoard(data),
     },
+    editCommonBoardById: {
+      mutationFn: async (data: IPublic) => await editCommonBoardById(data)
+    },
+    removeCommonBoardById: {
+      mutationFn: async (id: string) => await removeCommonBoardById(id)
+    }
   },
 };

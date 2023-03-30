@@ -14,6 +14,9 @@ const removeNoticeBoardById = (id: string) => deleteApi(`board/notice/${id}`);
 export default {
   findNoticeBoardAll,
   createNoticeBoard,
+  findNoticeBoardById,
+  editNoticeBoardById,
+  removeNoticeBoardById,
   query: {
     findNoticeBoardAll: () => ({
       queryKey: "board-notice",
@@ -28,5 +31,11 @@ export default {
     createNoticeBoard: {
       mutationFn: async (data: INotice) => await createNoticeBoard(data),
     },
+    editNoticeBoardById: {
+      mutationFn: async (id: string) => await editNoticeBoardById(id)
+    },
+    removeNoticeBoardById: {
+      mutationFn: async (id: string) => await removeNoticeBoardById(id)
+    }
   },
 };

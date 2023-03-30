@@ -32,6 +32,10 @@ export default () => {
     });
   };
 
+  const remoeFaqBoard = (id: string) => {
+    faq.removeFaqBoardById(id);
+  }
+
   return {
     data,
     createFaqBoard,
