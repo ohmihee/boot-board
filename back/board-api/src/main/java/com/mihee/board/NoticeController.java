@@ -9,35 +9,36 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/board/notice")
+@RequestMapping("/api/board/notice")
 @RequiredArgsConstructor
 public class NoticeController {
-    private final NoticeService boardService;
 
-    @PostMapping
-    public String createBoard(@RequestBody NoticeDoc board) {
+private final NoticeService boardService;
 
-        //System.out.println(board.getClass());
-        return this.boardService.createBoard(board);
-    }
+@PostMapping
+public String createBoard(@RequestBody NoticeDoc board) {
 
-    @PostMapping("/edit")
-    public String updateBoard(@RequestBody NoticeDoc board) {
-        return this.boardService.update(board);
-    }
+    //System.out.println(board.getClass());
+    return this.boardService.createBoard(board);
+}
 
-    @GetMapping
-    public List<NoticeDoc> findAllBoard() {
-        return this.boardService.getAllBoard();
-    }
+@PostMapping("/edit")
+public String updateBoard(@RequestBody NoticeDoc board) {
+    return this.boardService.update(board);
+}
 
-    @GetMapping("/{id}")
-    public Notice findBoardById(@PathVariable String id) {
-        return this.boardService.getBoardById(id);
-    }
+@GetMapping
+public List<NoticeDoc> findAllBoard() {
+    return this.boardService.getAllBoard();
+}
 
-    @DeleteMapping("/{id}")
-    public void removeBoardById(@PathVariable String id) {
-        this.boardService.removeBoardById(id);
-    }
+@GetMapping("/{id}")
+public Notice findBoardById(@PathVariable String id) {
+    return this.boardService.getBoardById(id);
+}
+
+@DeleteMapping("/{id}")
+public void removeBoardById(@PathVariable String id) {
+    this.boardService.removeBoardById(id);
+}
 }

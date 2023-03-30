@@ -25,58 +25,28 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @Setter
 public class Board extends BaseEntity {
+
     private String category;
     private String title;
     private List<BoardContent> contents;
-    private WriterCdo writer;
+    private User writer;
     private OpenStatus openStatus;
 
     public Board(BoardDoc boardDoc) {
         BeanUtils.copyProperties(boardDoc, this);
     }
 
-    public BoardDoc toDomain() {
-        BoardDoc boardDoc = new BoardDoc();
-        BeanUtils.copyProperties(this, boardDoc);
-        return boardDoc;
-    }
-
     public static List<BoardDoc> toDomains(List<Board> boards) {
         return boards.stream().map(Board::toDomain).collect(Collectors.toList());
 
     }
-    public void modifyValues(BoardDoc boardDoc) {
-        Map<String, Object> valueList = EntityUtil.MapFromObj(boardDoc);
-        for (Map.Entry<String, Object> entry: valueList.entrySet()) {
-            if (entry.getValue() != null) {
-                switch ( entry.getKey() ) {
-                    case "title":
-                        this.title = entry.getValue().toString();
-                        break;
-                    case "category":
-                        this.category = entry.getValue().toString();
-                        break;
-                    case "contents":
-                        System.out.println(entry.getValue()+"contents====");
-                        this.contents = (List<BoardContent>) entry.getValue();
-                        break;
-                    case "openStatus":
-                        if (entry.getValue().equals("All"))
-                            this.openStatus = OpenStatus.All;
-                        if (entry.getValue().equals("OnlyAdmin"))
-                            this.openStatus = OpenStatus.OnlyAdmin;
-                        break;
-                }
-            }
-        }
-    }
 
-    public static Board sample () {
+    public static Board sample() {
         Board board = new Board();
         board.setTitle("안녕하세요2");
         board.setCategory("일반");
         ArrayList<BoardContent> boardContents = new ArrayList<>();
-        boardContents.add(new BoardContent(1,"title","내용입니다."));
+        boardContents.add(new BoardContent(1, "title", "내용입니다."));
         board.setContents(boardContents);
         board.setOpenStatus(OpenStatus.All);
         return board;
@@ -94,7 +64,41 @@ public class Board extends BaseEntity {
         test.setContents(contents);
         test.setTitle("test");
         //aa.modifyValues(test);
-        System.out.println(aa.getTitle()+"============");
+        System.out.println(aa.getTitle() + "============");
         System.out.println(aa.getContents());
+    }
+
+    public BoardDoc toDomain() {
+        BoardDoc boardDoc = new BoardDoc();
+        BeanUtils.copyProperties(this, boardDoc);
+        return boardDoc;
+    }
+
+    public void modifyValues(BoardDoc boardDoc) {
+        Map<String, Object> valueList = EntityUtil.MapFromObj(boardDoc);
+        for (Map.Entry<String, Object> entry : valueList.entrySet()) {
+            if (entry.getValue() != null) {
+                switch (entry.getKey()) {
+                    case "title":
+                        this.title = entry.getValue().toString();
+                        break;
+                    case "category":
+                        this.category = entry.getValue().toString();
+                        break;
+                    case "contents":
+                        System.out.println(entry.getValue() + "contents====");
+                        this.contents = (List<BoardContent>) entry.getValue();
+                        break;
+                    case "openStatus":
+                        if (entry.getValue().equals("All")) {
+                            this.openStatus = OpenStatus.All;
+                        }
+                        if (entry.getValue().equals("OnlyAdmin")) {
+                            this.openStatus = OpenStatus.OnlyAdmin;
+                        }
+                        break;
+                }
+            }
+        }
     }
 }

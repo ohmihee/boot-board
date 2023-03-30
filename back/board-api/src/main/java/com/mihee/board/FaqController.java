@@ -9,38 +9,39 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/board/faq")
+@RequestMapping("/api/board/faq")
 @RequiredArgsConstructor
 public class FaqController {
-    private final FaqService boardService;
 
-    @PostMapping
-    public String createBoard(@RequestBody FaqDoc faqDoc) {
+private final FaqService boardService;
 
-        //System.out.println(board.getClass());
-        return this.boardService.createBoard(faqDoc);
-    }
+@PostMapping
+public String createBoard(@RequestBody FaqDoc faqDoc) {
 
-    @PostMapping("/edit")
-    public String updateBoard(@RequestBody FaqDoc faqDoc) {
+    //System.out.println(board.getClass());
+    return this.boardService.createBoard(faqDoc);
+}
 
-        return this.boardService.update(faqDoc);
-    }
+@PostMapping("/edit")
+public String updateBoard(@RequestBody FaqDoc faqDoc) {
 
-    @GetMapping
-    public List<FaqDoc> findAllBoard() {
-        return this.boardService.getAllBoard();
-    }
+    return this.boardService.update(faqDoc);
+}
 
-    @GetMapping("/{id}")
-    public Faq findBoardById(@PathVariable String id) {
-        return this.boardService.getBoardById(id);
-    }
+@GetMapping
+public List<FaqDoc> findAllBoard() {
+    return this.boardService.getAllBoard();
+}
 
-    @DeleteMapping("/{id}")
-    public void removeBoardById(@PathVariable String id) {
-        this.boardService.removeBoardById(id);
-    }
+@GetMapping("/{id}")
+public Faq findBoardById(@PathVariable String id) {
+    return this.boardService.getBoardById(id);
+}
+
+@DeleteMapping("/{id}")
+public void removeBoardById(@PathVariable String id) {
+    this.boardService.removeBoardById(id);
+}
 
 
 }

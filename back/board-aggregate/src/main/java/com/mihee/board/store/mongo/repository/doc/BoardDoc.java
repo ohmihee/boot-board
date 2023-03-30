@@ -2,6 +2,7 @@ package com.mihee.board.store.mongo.repository.doc;
 
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Board;
+import com.mihee.board.domain.User;
 import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
 import lombok.*;
@@ -21,14 +22,15 @@ import java.util.stream.Collectors;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BoardDoc extends BaseEntity {
-//    private List<BoardContent> test;
+
+    //    private List<BoardContent> test;
     private String category;
     private String title;
     private List<BoardContent> contents;
-    private String writer;
+    private User writer;
     private OpenStatus openStatus;
 
-// 자바 데이터를 데이터베이스로
+    // 자바 데이터를 데이터베이스로
 //    public BoardDoc(BoardDoc boardDoc) {
 //        BeanUtils.copyProperties(boardDoc, this);
 //    }

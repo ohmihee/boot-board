@@ -7,6 +7,7 @@ import com.mihee.board.store.mongo.BoardStore;
 import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 
@@ -15,6 +16,7 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     private final BoardStore boardStore;
+    private final BCryptPasswordEncoder encoder;
 
 
     @Override
@@ -28,19 +30,19 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public void update (BoardDoc boardDoc) {
+    public void update(BoardDoc boardDoc) {
         Board newBoard = this.boardStore.findById(boardDoc.getId());
         newBoard.modifyValues(boardDoc);
         this.boardStore.modify(newBoard);
     }
 
     @Override
-    public List<BoardDoc> getAllBoard () {
+    public List<Board> getAllBoard() {
         return this.boardStore.findAll();
     }
 
     @Override
-    public void removeBoardById (String id) {
+    public void removeBoardById(String id) {
         this.boardStore.deleteBoardById(id);
     }
 }

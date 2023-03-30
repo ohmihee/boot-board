@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/board")
+@RequestMapping("/api/board")
 @RequiredArgsConstructor
 public class BoardController {
+
     private final BoardService boardService;
 
     @PostMapping("")
@@ -24,7 +25,7 @@ public class BoardController {
     }
 
     @GetMapping
-    public List<BoardDoc> findAllBoard() {
+    public List<Board> findAllBoard() {
         return this.boardService.getAllBoard();
     }
 
@@ -32,7 +33,7 @@ public class BoardController {
     public Board findBoardById(@PathVariable String id) {
         return this.boardService.getBoardById(id);
     }
-    
+
     @DeleteMapping("/{id}")
     public void removeBoardById(@PathVariable String id) {
         this.boardService.removeBoardById(id);

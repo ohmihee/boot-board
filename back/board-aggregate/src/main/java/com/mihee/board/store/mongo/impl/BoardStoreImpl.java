@@ -36,17 +36,21 @@ public class BoardStoreImpl implements BoardStore {
     }
 
     @Override
-    public Boolean isExist (String id) {
+    public Boolean isExist(String id) {
         return this.boardRepository.findById(id).isPresent();
     }
 
+    //    @Override
+//    public List<BoardDoc> findAll () {
+//        return Board.toDomains(this.boardRepository.findAll());
+//    }
     @Override
-    public List<BoardDoc> findAll () {
-        return Board.toDomains(this.boardRepository.findAll());
+    public List<Board> findAll() {
+        return this.boardRepository.findAll();
     }
 
     @Override
-    public void deleteBoardById (String id) {
+    public void deleteBoardById(String id) {
         this.boardRepository.deleteById(id);
     }
 }

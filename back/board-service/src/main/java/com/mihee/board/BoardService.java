@@ -7,10 +7,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 public interface BoardService {
+
     String createBoard(BoardDoc board);
+
     Board getBoardById(String id);
+
     void update(BoardDoc boardDoc);
-    List<BoardDoc> getAllBoard();
+
+    List<Board> getAllBoard();
 
     void removeBoardById(String id);
 }
