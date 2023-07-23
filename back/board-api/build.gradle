@@ -1,6 +1,8 @@
 dependencies {
     api project(':board-service')
     implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation 'org.apache.kafka:kafka-clients:3.4.0'
+    implementation 'org.slf4s:slf4s-api_2.10:1.7.25'
 //    implementation('org.springframework.boot:spring-boot-starter-security')
 //    implementation('org.springframework.security:spring-security-crypto')
 }

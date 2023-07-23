@@ -1,6 +1,8 @@
 package com.mihee.board;
 
-import com.mihee.board.domain.Board;
+import com.mihee.board.domain.dto.board.BoardCdo;
+import com.mihee.board.domain.dto.board.BoardRdo;
+import com.mihee.board.domain.dto.board.BoardUdo;
 import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,25 +17,33 @@ public class BoardController {
     private final BoardService boardService;
 
     @PostMapping("")
-    public String createBoard(@RequestBody BoardDoc boardDoc) {
-        return this.boardService.createBoard(boardDoc);
+    public String createBoard(@RequestBody BoardCdo boardCdo) {
+        return this.boardService.createBoard(boardCdo);
     }
 
-    @PostMapping("/edit")
-    public void updateBoard(@RequestBody BoardDoc boardDoc) {
-        this.boardService.update(boardDoc);
-    }
-
-    @GetMapping
-    public List<Board> findAllBoard() {
-        return this.boardService.getAllBoard();
+    @GetMapping("/category/{category}")
+    public List<BoardRdo> findBoardByCategory(@PathVariable String category) {
+        return this.boardService.getBoardByCategory(category);
     }
 
     @GetMapping("/{id}")
-    public Board findBoardById(@PathVariable String id) {
+    public BoardRdo findBoardById(@PathVariable String id) {
         return this.boardService.getBoardById(id);
     }
 
+    @PostMapping("/edit")
+    public String updateBoard(@RequestBody BoardUdo boardUdo) {
+        return this.boardService.update(boardUdo);
+    }
+
+    //
+    @GetMapping
+    public List<BoardRdo> findAllBoard() {
+        return this.boardService.getAllBoard();
+    }
+
+    //
+//
     @DeleteMapping("/{id}")
     public void removeBoardById(@PathVariable String id) {
         this.boardService.removeBoardById(id);

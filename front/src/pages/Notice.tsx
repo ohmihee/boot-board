@@ -13,6 +13,7 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import CollapseRow from "../components/CollapseRow";
 import notice from "../state/notice";
+import common from "../state/common";
 
 interface INoticeProps {}
 interface test {
@@ -28,8 +29,8 @@ interface test {
   createDateTime: number;
 }
 const Notice: React.FunctionComponent<INoticeProps> = (props) => {
-  const { data }: { data: test[] } = notice();
-  console.log(data);
+  const { data }: { data?: test[] } = notice();
+  //const { createCommonBoard } = common();
 
   return (
     <>
@@ -44,6 +45,7 @@ const Notice: React.FunctionComponent<INoticeProps> = (props) => {
               <TableCell>제목</TableCell>
               <TableCell>작성자</TableCell>
               <TableCell>등록일</TableCell>
+              <TableCell></TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

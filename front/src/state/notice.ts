@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useMutation, useQuery } from "react-query";
 import noticeApi from "../api/noticeApi";
 import { INotice } from "./type/INoticeType";
+import boardApi from "../api/boardApi";
+import {IPublic} from "../types/type";
 
 export default () => {
   const [noticeBoard, setNoticeBoard] = useState<INotice>({
@@ -13,8 +15,9 @@ export default () => {
     ],
     openStatus: "All",
   });
-  const { queryKey, queryFn } = noticeApi.query.findNoticeBoardAll();
-  const { data } = useQuery(queryKey, queryFn);
+  //const { queryKey, queryFn } = noticeApi.query.findNoticeBoardAll();
+  const {queryKeyNotice, queryFnNotice } = boardApi.query.findNoticeBoard();
+  const { data }= useQuery(queryKeyNotice, queryFnNotice);
 
   const register = noticeApi.mutation.createNoticeBoard;
   const registerMutation = useMutation(register.mutationFn);

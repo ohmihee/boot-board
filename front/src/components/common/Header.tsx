@@ -39,7 +39,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
             // src="header.png"
             width='5vw'
         /> */}
-      <Toolbar sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Toolbar sx={{ borderBottom: 1, borderColor: "#29367c" }}>
         <Typography
           component="h2"
           variant="h5"
@@ -58,7 +58,7 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
           justifyContent: "space-between",
           overflowX: "auto",
           borderBottom: 1,
-          borderColor: "divider",
+          borderColor: "#29367c",
           backgroundColor: "#fffef2",
           color: "#333",
         }}

@@ -1,36 +1,25 @@
 import { deleteApi, getApi, postApi } from "./api";
+import {IPublic} from "../types/type";
 
-const findCommonBoardAll = () => getApi("board").then();
+const path = "api/board"
+const findCommonBoardAll = () => getApi(path).then();
 
-const createCommonBoard = (data: any) => postApi("board", data).then();
+const createCommonBoard = (data: IPublic) => postApi(path, data).then();
 
-const findCommonBoardById = (id: string) => getApi(`board/${id}`);
+const findCommonBoardById = (id: string) => getApi(`${path}/${id}`);
 
-const editCommonBoardById = (data: any) => postApi("board/edit", data);
+const editCommonBoardById = (data: IPublic) => postApi(`${path}/edit`, data);
 
-const removeCommonBoardById = (id: string) => deleteApi(`board/${id}`);
+const removeCommonBoardById = (id: string) => deleteApi(`${path}/${id}`);
 
-interface IPublic {
-  id?: string;
-  category?: string;
-  contents: [
-    {
-      order?: number;
-      contentType?: string;
-      content: string;
-    }
-  ];
-  title: string | undefined;
-  writer?: string;
-  openStatus: string;
-}
-
+const findNoticeBoard = () => getApi(`${path}/category/notice`).then();
 export default {
   findCommonBoardAll,
   createCommonBoard,
   findCommonBoardById,
   editCommonBoardById,
   removeCommonBoardById,
+  findNoticeBoard,
   query: {
     findCommonBoardAll: () => ({
       queryKeyAll: "board-public",
@@ -42,6 +31,10 @@ export default {
       queryKeyById: "board-read-id",
       queryFnById: async () => await findCommonBoardById(id).then(),
     }),
+    findNoticeBoard: () => ({
+      queryKeyNotice: "board-notice",
+      queryFnNotice: async () => await findNoticeBoard().then()
+    })
   },
   mutation: {
     createCommonBoard: {

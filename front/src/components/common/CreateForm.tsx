@@ -1,16 +1,19 @@
 import React from "react";
 import { Box, Button, TextField } from "@mui/material";
 import { Link } from "react-router-dom";
+import {IPublic} from "../../types/type";
 
 // interface ICreateForm {
 //   onChangeTitle: (e: React.ChangeEvent<HTMLInputElement>) => void;
 // }
 
 const CreateForm = ({
+   // value,
   onChangeTitle,
   onChangeContent,
   onClickConfirm,
 }: {
+    //value:IPublic,
   onChangeTitle: (
     type: string
   ) => (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -29,6 +32,7 @@ const CreateForm = ({
       >
         <TextField
           onChange={onChangeTitle("title")}
+          //value={value?.title}
           fullWidth
           //label={commonBoard?.title ?? "제목을 입력하세요"}
           label={"제목을 입력하세요"}

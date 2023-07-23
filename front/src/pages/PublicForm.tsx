@@ -1,4 +1,4 @@
-import { Box, Button, Grid, TextField } from "@mui/material";
+import { Box, Button, FormControl, Grid, InputLabel, MenuItem, Select, TextField } from "@mui/material";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import common from "../state/common";
 
@@ -9,8 +9,9 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
   const path = location.pathname.split("form/");
   const {
     createCommonBoard,
-    setCommonBoardTitle,
     setCommonBoardContent,
+      setCommonBoardProperties,
+      editCommonBoard,
     commonBoard,
   } = common(path[1]);
 
@@ -19,6 +20,14 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
   const route = () => {
     navigate("/");
   };
+
+  const handleUpsert =  () => {
+      if (commonBoard.id) {
+           editCommonBoard(route)
+      } else {
+            createCommonBoard(route)
+      }
+    }
 
   return (
     <>
@@ -32,11 +41,12 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
       >
         <TextField
           onChange={(e) => {
-            setCommonBoardTitle("title", e.target.value);
+              setCommonBoardProperties("title", e.target.value);
           }}
           fullWidth
-          label={commonBoard?.title ?? "제목을 입력하세요"}
+          label={commonBoard.title?"":"제목을 입력하세요"}
           id="fullWidth"
+          value={commonBoard?.title}
         />
         <TextField
           sx={{
@@ -48,15 +58,16 @@ const PublicForm: React.FunctionComponent<IPublicForm> = () => {
             setCommonBoardContent(e.target.value);
           }}
           fullWidth
-          label="내용을 입력하세요"
+          label={commonBoard?.contents[0]?.content?"":"내용을 입력하세요"}
           id="fullWidth"
+          value={commonBoard?.contents[0]?.content}
         />
         <Button
           sx={{ marginTop: 2, backgroundColor: "#1982b3" }}
           variant="contained"
-          onClick={() => createCommonBoard(route)}
+          onClick={handleUpsert}
         >
-          완료
+            {commonBoard.id?"수정":"완료"}
         </Button>
         <Link to="/">
           <Button

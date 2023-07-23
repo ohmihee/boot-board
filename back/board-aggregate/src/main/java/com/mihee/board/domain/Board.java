@@ -1,8 +1,7 @@
 package com.mihee.board.domain;
 
 
-import com.google.gson.Gson;
-import com.google.gson.JsonArray;
+import com.mihee.board.domain.dto.board.BoardUdo;
 import com.mihee.board.domain.dto.WriterCdo;
 import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
@@ -12,7 +11,6 @@ import lombok.*;
 import org.springframework.beans.BeanUtils;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -29,7 +27,7 @@ public class Board extends BaseEntity {
     private String category;
     private String title;
     private List<BoardContent> contents;
-    private User writer;
+    private WriterCdo writer;
     private OpenStatus openStatus;
 
     public Board(BoardDoc boardDoc) {
@@ -38,7 +36,6 @@ public class Board extends BaseEntity {
 
     public static List<BoardDoc> toDomains(List<Board> boards) {
         return boards.stream().map(Board::toDomain).collect(Collectors.toList());
-
     }
 
     public static Board sample() {
@@ -74,8 +71,8 @@ public class Board extends BaseEntity {
         return boardDoc;
     }
 
-    public void modifyValues(BoardDoc boardDoc) {
-        Map<String, Object> valueList = EntityUtil.MapFromObj(boardDoc);
+    public void modifyValues(BoardUdo boardUdo) {
+        Map<String, Object> valueList = EntityUtil.MapFromObj(boardUdo);
         for (Map.Entry<String, Object> entry : valueList.entrySet()) {
             if (entry.getValue() != null) {
                 switch (entry.getKey()) {

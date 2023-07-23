@@ -1,22 +1,27 @@
 package com.mihee.board.store.mongo;
 
 import com.mihee.board.domain.Board;
+import com.mihee.board.domain.dto.board.BoardCdo;
+import com.mihee.board.domain.dto.board.BoardRdo;
 import com.mihee.board.store.mongo.repository.doc.BoardDoc;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface BoardStore {
 
-    String create(BoardDoc boardDoc);
+    String create(BoardCdo boardCdo);
 
     Board findById(String id);
 
-    String modify(Board board);
+    String modify(BoardDoc boardDoc);
 
-    Boolean isExist(String id);
+    //
+//    Boolean isExist(String id);
+//
+    List<BoardDoc> findAll();
 
-    List<Board> findAll();
-
+    //
     void deleteBoardById(String id);
+
+    List<BoardDoc> findByCategory(String category);
 }

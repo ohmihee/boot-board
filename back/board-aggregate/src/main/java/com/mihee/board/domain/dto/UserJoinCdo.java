@@ -6,6 +6,7 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public class UserJoinCdo {
-    private String userName;
+
+    private String nick;
     private String password;
 }

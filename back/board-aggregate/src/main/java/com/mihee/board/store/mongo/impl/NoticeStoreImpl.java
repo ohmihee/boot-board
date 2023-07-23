@@ -1,6 +1,8 @@
 package com.mihee.board.store.mongo.impl;
 
 import com.mihee.board.domain.Notice;
+import com.mihee.board.domain.dto.notice.NoticeCdo;
+import com.mihee.board.domain.dto.notice.NoticeUdo;
 import com.mihee.board.store.mongo.NoticeStore;
 import com.mihee.board.store.mongo.repository.NoticeRepository;
 import com.mihee.board.store.mongo.repository.doc.NoticeDoc;
@@ -14,21 +16,22 @@ import java.util.List;
 public class NoticeStoreImpl implements NoticeStore {
 
     private final NoticeRepository noticeRepository;
+
     @Override
-    public String create(NoticeDoc noticeDoc) {
-        Notice notice = new Notice(noticeDoc);
-        return this.noticeRepository.save(notice).getId();
+    public String create(NoticeCdo noticeCdo) {
+        NoticeDoc noticeDoc = noticeCdo.toDomain();
+        return this.noticeRepository.save(noticeDoc).getId();
     }
 
     @Override
     public Notice findById(String id) {
-        return this.noticeRepository.findById(id).get();
+        return this.noticeRepository.findById(id).orElseGet(null).toDomain();
     }
 
     @Override
-    public String modify(NoticeDoc noticeDoc) {
-        Notice notice = new Notice(noticeDoc);
-        return this.noticeRepository.save(notice).getId();
+    public String modify(NoticeUdo notice) {
+        NoticeDoc noticeDoc = notice.toDomain();
+        return this.noticeRepository.save(noticeDoc).getId();
     }
 
     @Override
@@ -38,7 +41,7 @@ public class NoticeStoreImpl implements NoticeStore {
 
     @Override
     public List<NoticeDoc> findAll() {
-        return Notice.toDomains(this.noticeRepository.findAll());
+        return this.noticeRepository.findAll();
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.mihee.board.impl;
 
 import com.mihee.board.NoticeService;
 import com.mihee.board.domain.Notice;
+import com.mihee.board.domain.dto.notice.NoticeCdo;
+import com.mihee.board.domain.dto.notice.NoticeUdo;
 import com.mihee.board.store.mongo.NoticeStore;
 import com.mihee.board.store.mongo.repository.doc.NoticeDoc;
 import lombok.RequiredArgsConstructor;
@@ -12,10 +14,12 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class NoticeServiceImpl implements NoticeService {
+
     private final NoticeStore noticeStore;
+
     @Override
-    public String createBoard(NoticeDoc notice) {
-        return this.noticeStore.create(notice);
+    public String createBoard(NoticeCdo noticeCdo) {
+        return this.noticeStore.create(noticeCdo);
     }
 
     @Override
@@ -24,10 +28,8 @@ public class NoticeServiceImpl implements NoticeService {
     }
 
     @Override
-    public String update(NoticeDoc notice) {
-        Notice newNotice = this.noticeStore.findById(notice.getId());
-        newNotice.modifyValues(notice);
-        return this.noticeStore.modify(newNotice.toDomain());
+    public String update(NoticeUdo notice) {
+        return this.noticeStore.modify(notice);
     }
 
     @Override

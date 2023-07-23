@@ -27,10 +27,10 @@ export default (id?: string) => {
             },
         ],
         title: undefined,
-        writer: "",
         openStatus: "All",
     });
     const {queryKeyAll, queryFnAll} = boardApi.query.findCommonBoardAll();
+    // const {queryKeyNotice, queryFnNotice} = boardApi.query.findNoticeBoard()
 
     if (id) {
         const {queryKeyById, queryFnById} =
@@ -38,17 +38,17 @@ export default (id?: string) => {
         useQuery(queryKeyById, queryFnById, {
             onSuccess: (result) => {
                 setCommonBoard(result);
-                console.log(result);
             },
         });
     }
 
-    const {data} = useQuery(queryKeyAll, queryFnAll);
+    const {data, refetch} = useQuery(queryKeyAll, queryFnAll);
     const register = boardApi.mutation.createCommonBoard;
     const registerMutaion = useMutation(register.mutationFn);
 
+    const editMutation = useMutation(boardApi.mutation.editCommonBoardById.mutationFn)
+    const removeMutation = useMutation(boardApi.mutation.removeCommonBoardById.mutationFn);
     const createCommonBoard = (route: () => void) => {
-        console.log(commonBoard, "commonboard===");
         registerMutaion.mutate(commonBoard, {onSuccess: () => route()});
     };
 
@@ -74,20 +74,30 @@ export default (id?: string) => {
         });
     };
 
-    const editCommonBoard = async () => {
-        await boardApi.editCommonBoardById(commonBoard)
+    const editCommonBoard = (route: () =>void) => {
+        //await boardApi.editCommonBoardById(commonBoard)
+        editMutation.mutate(commonBoard, {onSuccess: () =>{
+                route()
+            }})
     }
 
     const removeCommonBoardById = async (id: string) => {
         await boardApi.removeCommonBoardById(id);
+        removeMutation.mutate(id, {onSuccess: () =>{
+                // refetch()
+            }})
+
     }
 
 
     return {
         data,
         commonBoard,
+        refetch,
         createCommonBoard,
         setCommonBoardProperties,
         setCommonBoardContent,
+        editCommonBoard,
+        removeCommonBoardById
     };
 };

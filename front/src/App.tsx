@@ -17,6 +17,7 @@ import { Container, Grid } from "@mui/material";
 import Header from "./components/common/Header";
 import CreateNotice from "./pages/CreateNotice";
 import CreateFaq from "./pages/CreateFaq";
+import PublicDetail from "./pages/PublicDetail";
 
 function App() {
   // const test = async () => {
@@ -27,6 +28,7 @@ function App() {
       element: <Home />,
       children: [
         { path: "/", element: <Public /> },
+        { path: "/public", element: <PublicDetail /> },
         {
           path: "/notice",
           element: <Notice />,

@@ -2,6 +2,7 @@ package com.mihee.board.store.mongo.repository.doc;
 
 import com.mihee.board.domain.BaseEntity;
 import com.mihee.board.domain.Notice;
+import com.mihee.board.domain.dto.notice.NoticeCdo;
 import com.mihee.board.domain.vo.BoardContent;
 import com.mihee.board.domain.vo.OpenStatus;
 import lombok.Getter;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 @Setter
 @NoArgsConstructor
 public class NoticeDoc extends BaseEntity {
+
     private String title;
     private List<BoardContent> contents;
     private String writer;
@@ -26,13 +28,14 @@ public class NoticeDoc extends BaseEntity {
     public NoticeDoc(Notice notice) {
         BeanUtils.copyProperties(notice, this);
     }
-    public  Notice toDomain() {
-        Notice notice = new Notice();
-        BeanUtils.copyProperties(this, notice);
-        return notice;
-    }
 
     public static List<Notice> toDomains(List<NoticeDoc> notices) {
         return notices.stream().map(NoticeDoc::toDomain).collect(Collectors.toList());
+    }
+
+    public Notice toDomain() {
+        Notice notice = new Notice();
+        BeanUtils.copyProperties(this, notice);
+        return notice;
     }
 }

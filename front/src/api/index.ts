@@ -3,3 +3,4 @@ export * from "./api";
 export * from "./boardApi";
 export * from "./faq";
 export * from "./noticeApi";
+export * from "./userApi";

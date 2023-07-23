@@ -1,7 +1,7 @@
 import { INotice } from "../state/type/INoticeType";
 import { deleteApi, getApi, postApi } from "./api";
 
-const findNoticeBoardAll = () => getApi("board/notice").then();
+const findNoticeBoardAll = () => getApi("api/board/notice").then();
 
 const createNoticeBoard = (data: any) => postApi("board/notice", data);
 
