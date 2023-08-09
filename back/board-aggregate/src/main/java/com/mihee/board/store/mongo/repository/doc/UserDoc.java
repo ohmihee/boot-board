@@ -15,6 +15,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDoc extends BaseEntity {
+
+    private String userName;
     private String nick;
     private String password;
     private String email;
@@ -26,7 +28,7 @@ public class UserDoc extends BaseEntity {
         return user;
     }
 
-    public void toDoc (User user){
+    public void toDoc(User user) {
         BeanUtils.copyProperties(user, this);
     }
 }
