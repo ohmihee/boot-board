@@ -1,0 +1,17 @@
+server:
+  port: 0  # random
+
+spring:
+  application:
+    name: msa-board
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
+
+#springdoc:
+#  show-actuator: true
+
+springdoc:
+  swagger-ui:
+    enabled: true
+    path: /swagger-ui.html
