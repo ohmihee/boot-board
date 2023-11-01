@@ -2,17 +2,14 @@ package org.example;
 
 import lombok.RequiredArgsConstructor;
 import org.example.domain.Category;
-import org.example.store.storeImpl.CategoryRepository;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Optional;
+import org.example.store.CategoryRepository;
 
 @RequiredArgsConstructor
 public class ExMain {
 
     private final CategoryRepository categoryRepository;
-    public void saveCategory() {
-        Category category = new Category();
+    public void saveCategory(Category category) {
+        Category newCategory = new Category();
         categoryRepository.save(category);
     }
 
