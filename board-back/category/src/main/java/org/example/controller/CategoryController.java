@@ -13,7 +13,7 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @PostMapping("/")
-    public Category registerCategory(CategoryCdo categoryCdo) {
+    public Category registerCategory(@RequestBody CategoryCdo categoryCdo) {
         return categoryService.registerCategory(categoryCdo);
     }
 

@@ -12,6 +12,6 @@ public class CategoryService {
     private final CategoryStoreLogic categoryStoreLogic;
 
     public Category registerCategory(CategoryCdo categoryCdo) {
-        return categoryStoreLogic.registerCategory(new Category());
+        return categoryStoreLogic.registerCategory(categoryCdo.toDomain());
     }
 }
