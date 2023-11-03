@@ -14,4 +14,8 @@ public class CategoryService {
     public Category registerCategory(CategoryCdo categoryCdo) {
         return categoryStoreLogic.registerCategory(categoryCdo.toDomain());
     }
+
+    public Category findCategoryByCode (String code) {
+        return categoryStoreLogic.getCategoryByCode(code);
+    }
 }

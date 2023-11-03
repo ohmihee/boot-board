@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.entity.BaseEntity;
-import org.hibernate.annotations.UuidGenerator;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -23,14 +21,12 @@ public class Category extends BaseEntity {
     @Column(name="CODE", length=20, nullable=false, unique=true)
     private String code;
     @ElementCollection
-    @Column(name = "IN_CATEGORIes", nullable = false)
+    @Column(name = "IN_CATEGORIES", nullable = false)
     private List<String> inCategories = new ArrayList<>();
 
     public Category(String code, String name, List<String> inCategories){
         this.code = code;
         this.name = name;
         this.inCategories = inCategories;
-
-
     }
 }

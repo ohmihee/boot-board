@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.*;
 public class CategoryController {
     private final CategoryService categoryService;
 
-    @PostMapping("/")
+    @PostMapping("")
     public Category registerCategory(@RequestBody CategoryCdo categoryCdo) {
         return categoryService.registerCategory(categoryCdo);
+    }
+
+    @GetMapping("")
+    public Category findCategoryByCode(@RequestParam(required = true) String code) {
+        return categoryService.findCategoryByCode(code);
     }
 
 }

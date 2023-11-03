@@ -3,4 +3,5 @@ include 'user'
 include 'core'
 include 'category'
 include 'common'
+include 'board'
 
