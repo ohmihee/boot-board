@@ -8,12 +8,31 @@ group = "org.example"
 version = "1.0-SNAPSHOT"
 sourceCompatibility = JavaVersion.VERSION_17
 
+apply plugin: 'java'
+apply plugin: 'maven-publish'
+
 repositories {
     if (mavenLocal()) {
         mavenLocal()
     }
     mavenCentral()
 }
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = group
+            artifactId = 'category'
+            version = version
+            from components.java
+        }
+    }
+    repositories {
+        mavenLocal() // 로컬 저장소에 배포
+    }
+}
+
+
 
 dependencies {
     // @Getter, @Setter 등과 같은 어노테이션 사용을 위한 lombok
@@ -29,8 +48,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     // 로컬에서 배포한 라이브러리
     implementation 'org.example:common:1.0-SNAPSHOT'
-
-
 }
 
 tasks.test {

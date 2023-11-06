@@ -10,12 +10,15 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name="category")
+@Table(name="categories")
 @NoArgsConstructor()
 public class Category extends BaseEntity {
     @Id
     @GeneratedValue
     private UUID id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    private UUID id;
     @Column(name="NAME", length=20, nullable=false, unique=false)
     private String name;
     @Column(name="CODE", length=20, nullable=false, unique=true)
@@ -23,10 +26,14 @@ public class Category extends BaseEntity {
     @ElementCollection
     @Column(name = "IN_CATEGORIES", nullable = false)
     private List<String> inCategories = new ArrayList<>();
+    @Column(name="DEPTH", nullable = true)
+    private Integer depth;
 
     public Category(String code, String name, List<String> inCategories){
+        this.depth = 1;
         this.code = code;
         this.name = name;
         this.inCategories = inCategories;
     }
+
 }

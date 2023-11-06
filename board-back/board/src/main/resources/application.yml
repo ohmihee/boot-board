@@ -1,6 +1,8 @@
 server:
-  port: 9093
+  port: 9094
 spring:
+  application:
+    name: board
   datasource:
     url: jdbc:mysql://localhost:3306/mydatabase
     username: root

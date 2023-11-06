@@ -31,6 +31,14 @@ public class CategoryStoreLogicImpl implements CategoryStoreLogic {
         if (dbCategory) {
             throw new RuntimeException(category.getCode()+"에 해당하는 카테고리가 존재합니다.");
         }
+
         return categoryRepository.save(category);
     }
+
+    @Override
+    public Boolean existsCategoryByCodeAndDepth(String code, Integer depth) {
+        return categoryRepository.existsCategoryByCodeAndDepth(code, depth);
+    }
+
+
 }
